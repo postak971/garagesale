@@ -1,0 +1,24 @@
+{
+    "name": "garagesale",
+    "version": "1.0.0",
+    "description": "Create a folder structure lesson\r Create a root folder as garagesale\r add frontend and backend folder\r Create src folder under frontend\r Create index.html file under frontend.\r install node project in frontend (npm init)\r npm install live-server\r add start command as live-server src --verbose in package-json file.\r run npm start to launch the site.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node backend/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/postak971/garagesale.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/postak971/garagesale/issues"
+    },
+    "homepage": "https://github.com/postak971/garagesale#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.3"
+    }
+}
