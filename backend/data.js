@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     products: [{
         _id: '1',
         name: 'Seriously Strechy Medium Wash',
