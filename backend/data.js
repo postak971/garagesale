@@ -28,7 +28,7 @@ export default {
         brand: "Black Lapel",
         rating: 3.0,
         numReviews: 150,
-        countInStock: 36,
+        countInStock: 0,
     }, {
         _id: '4',
         name: "Manchester Guy's Regular Wear",
