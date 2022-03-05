@@ -1,4 +1,6 @@
 import axios from 'axios';
+import Rating from '../components/Rating';
+
 const HomeScreen = {
         render: async() => {
 
@@ -27,6 +29,11 @@ const HomeScreen = {
             ${product.name}
           </a>
         </div>
+        <div class="product-rating">
+        ${Rating.render({
+          value: product.rating,
+          text:`${product.numReviews} reviews`,
+        })}
         <div class="product-brand">
           ${product.brand}
         </div>

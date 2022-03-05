@@ -108,3 +108,12 @@
         .product-price {
             font-size: 2rem;
         }
+        
+        .rating {
+            color: #ffd900;
+            font-size: 1.4rem;
+        }
+        
+        .rating span:last-child {
+            color: rgb(73, 72, 72);
+        }
