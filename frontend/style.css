@@ -41,12 +41,12 @@
                 width: 100%;
             }
             
-            button .grid-container {
+            .grid-container {
                 display: grid;
                 grid-template-areas: 'header' 'main' 'footer';
                 grid-template-columns: 1fr;
                 grid-template-rows: 5rem 1fr 5rem;
-                height: 100%;
+                min-height: 100%;
             }
             
             header {
@@ -82,7 +82,8 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                color: #ffffff;
+                color: #f7f3f3;
+                bottom: 0;
             }
             /* Products styles*/
             
@@ -131,7 +132,7 @@
             /*Rating */
             
             .rating {
-                color: #0084ff;
+                color: #ffc400;
                 font-size: 1.4rem;
             }
             
@@ -187,4 +188,12 @@
                 border-radius: 0.7rem;
                 background-color: #e0dcdc;
                 padding: 1rem;
+            }
+            
+            .available {
+                color: #04dd04;
+            }
+            
+            .unavailable {
+                color: #e00a0a;
             }

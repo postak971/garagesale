@@ -3,6 +3,14 @@ import Rating from '../components/Rating';
 import { parseRequestUrl } from '../util';
 
 const ProductScreen = {
+
+        after_render: () => {
+            const request = parseRequestUrl();
+            document.querySelector("#add-button").addEventListener('click', () => {
+                document.location.hash = `/cart/${request.id}`;
+            })
+        },
+
         render: async() => {
                 const request = parseRequestUrl();
                 const product = await getProduct(request.id);
@@ -46,8 +54,8 @@ const ProductScreen = {
                         Status: 
                             ${
                             product.countInStock > 0
-                            ? `<span class ="success">In stock</span>`
-                            : `<span class = "error">Not available</span>`
+                            ? `<span class ="available">Available</span>`
+                            : `<span class = "unavailable">Sorry, out of stock!</span>`
                             }
                         </li>
                         <li>
