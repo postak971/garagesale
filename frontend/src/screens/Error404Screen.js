@@ -1,6 +1,6 @@
 const Error404Screen = {
-    render: () => {
-        return `<div > Page doesn't exist!`;
-    },
-}
+    render: () => `
+        <div> Page doesn't exist!</div>
+        `,
+};
 export default Error404Screen;
