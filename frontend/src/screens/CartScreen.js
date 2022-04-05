@@ -6,9 +6,11 @@ const addToCart = (item, forceUpdate = false) => {
     let cartItems = getCartItems();
     const existItem = cartItems.find((x) => x.product === item.product);
     if (existItem) {
-        cartItems = cartItems.map((x) =>
-            x.product === existItem.product ? item : x
-        );
+        if (forceUpdate) {
+            cartItems = cartItems.map((x) =>
+                x.product === existItem.product ? item : x
+            );
+        }
     } else {
         cartItems = [...cartItems, item];
     }
@@ -29,6 +31,7 @@ const removeFromCart = (id) => {
 };
 
 const CartScreen = {
+        // update the subtotal
         after_render: () => {
             const qtySelects = document.getElementsByClassName('qty-select');
             Array.from(qtySelects).forEach((qtySelect) => {
@@ -90,13 +93,16 @@ const CartScreen = {
                                     </a>
                                 </div>
                                 <div>
-                                    Quantity: <select class="qty-select" id="${item.product}">
+                            
+                                    Quantity:  <select class="qty-select" id="${item.product}">
                                     ${[...Array(item.countInStock).keys()].map((x) =>
-                                        item.qty === x + 1
-                                          ? `<option selected value="${x + 1}">${x + 1}</option>`
-                                          : `<option  value="${x + 1}">${x + 1}</option>`
-                                      )}  
+                                      item.qty === x + 1
+                                        ? `<option selected value="${x + 1}">${x + 1}</option>`
+                                        : `<option  value="${x + 1}">${x + 1}</option>`
+                                    )}  
+                  
                                     </select>
+                                    
                                     <button type ="button" class ="delete-button" id ="${item.product}"> Remove Item
                                     </button>
                                 </div>
