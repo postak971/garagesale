@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+import Header from './components/header.js';
 import CartScreen from './screens/CartScreen.js';
 import Error404Screen from './screens/Error404Screen.js';
 import HomeScreen from './screens/HomeScreen.js';
@@ -20,6 +21,9 @@ const router = async() => {
         (request.id ? '/:id' : '') +
         (request.verb ? `/${request.verb}` : '');
     const screen = routes[parseUrl] ? routes[parseUrl] : Error404Screen;
+    const header = document.getElementById("header-container");
+    header.innerHTML = await Header.render();
+    await Header.after_render();
     const main = document.getElementById("main-container");
     main.innerHTML = await screen.render();
     await screen.after_render();
