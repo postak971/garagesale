@@ -16,5 +16,6 @@ module.exports = {
         'eol-last': 0,
         'no-nested-ternary': 0,
         'import/prefer-default-export': 0,
+        "arrow-body-style": 0,
     },
 };
