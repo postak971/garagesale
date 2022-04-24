@@ -1,18 +1,18 @@
-import express from 'express';
-import expressAsyncHandler from 'express-async-handler';
-import User from '../models/userModel';
-import { generateToken } from '../util';
+import express from "express";
+import expressAsyncHandler from "express-async-handler";
+import User from "../models/userModel";
+import { generateToken } from "../util";
 
 const userRouter = express.Router();
 
 userRouter.get(
-    '/createadmin',
+    "/createadmin",
     expressAsyncHandler(async(req, res) => {
         try {
             const user = new User({
-                name: 'admin',
-                email: 'admin@example.com',
-                password: 'jsamazona',
+                name: "admin1",
+                email: "admin1@example.com",
+                password: "garagesale",
                 isAdmin: true,
             });
             const createdUser = await user.save();
@@ -23,7 +23,32 @@ userRouter.get(
     })
 );
 userRouter.post(
-    '/signin',
+    "/register",
+    expressAsyncHandler(async(req, res) => {
+        const user = new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+        });
+        const createdUser = await user.save();
+
+        if (!createdUser) {
+            res.status(401).send({
+                message: "Invalid User Info",
+            });
+        } else {
+            res.send({
+                _id: createdUser._id,
+                name: createdUser.name,
+                email: createdUser.email,
+                isAdmin: createdUser.isAdmin,
+                token: generateToken(createdUser),
+            });
+        }
+    })
+);
+userRouter.post(
+    "/signin",
     expressAsyncHandler(async(req, res) => {
         const signinUser = await User.findOne({
             email: req.body.email,
@@ -31,7 +56,7 @@ userRouter.post(
         });
         if (!signinUser) {
             res.status(401).send({
-                message: 'Invalid Email or Password',
+                message: "Invalid Email or Password",
             });
         } else {
             res.send({

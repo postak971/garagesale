@@ -33,6 +33,7 @@ app.get('/api/products/:id', (req, res) => {
         res.status(404).send({ message: 'Product Not Found!' });
     }
 });
+/* Handle all errors in express instances */
 app.use((err, req, res, next) => {
     const status = err.name && err.name === 'ValidationError' ? 400 : 500;
     res.status(status).send({ message: err.message });

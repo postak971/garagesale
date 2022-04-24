@@ -1,22 +1,23 @@
-import { getProduct } from '../api';
-import Rating from '../components/Rating';
-import { parseRequestUrl } from '../util';
+import { getProduct } from "../api";
+import Rating from "../components/Rating";
+import { hideLoading, parseRequestUrl, showLoading } from "../util";
 
 const ProductScreen = {
-
         after_render: () => {
             const request = parseRequestUrl();
-            document.querySelector("#add-button").addEventListener('click', () => {
+            document.querySelector("#add-button").addEventListener("click", () => {
                 document.location.hash = `/cart/${request.id}`;
-            })
+            });
         },
 
         render: async() => {
                 const request = parseRequestUrl();
+                showLoading();
                 const product = await getProduct(request.id);
                 if (product.error) {
-                    return (`<div>${product.error}</div>`)
+                    return `<div>${product.error}</div>`;
                 }
+                hideLoading();
                 return `
         <div class = "content">
             <div class="back-to-result">
@@ -33,8 +34,8 @@ const ProductScreen = {
                         </li>
                         <li>
                             ${Rating.render({
-                                value: product.rating,
-                                text:`${product.numReviews} reviews`,
+                              value: product.rating,
+                              text: `${product.numReviews} reviews`,
                             })}
                         </li>
                         <li>Price: <strong>$${product.price}</strong></li>
@@ -53,9 +54,9 @@ const ProductScreen = {
                         <li>
                         Status: 
                             ${
-                            product.countInStock > 0
-                            ? `<span class ="available">Available</span>`
-                            : `<span class = "unavailable">Sorry, out of stock!</span>`
+                              product.countInStock > 0
+                                ? `<span class ="available">Available</span>`
+                                : `<span class = "unavailable">Sorry, out of stock!</span>`
                             }
                         </li>
                         <li>
@@ -66,6 +67,6 @@ const ProductScreen = {
             </div>
         </div>
         `;
-    },
+  },
 };
 export default ProductScreen;

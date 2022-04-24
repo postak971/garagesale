@@ -11,8 +11,7 @@ const Header = {
         <a href="/#/cart">Cart</a>
         ${name
             ? `<a href="/#/profile">${name}</a>`
-            : `<a href="/#/signin">Sign in</a>`}
-        
+            : `<a href="/#/signin">Sign in<a>`}        
         </div>`
     },
     after_render: () => {}
