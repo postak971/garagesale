@@ -38,3 +38,26 @@ export const getUserInfo = () => {
         JSON.parse(localStorage.getItem("userInfo")) :
         { name: "", email: "", password: "" };
 };
+
+export const getShipping = () => {
+    const shipping = localStorage.getItem("shipping") ?
+        JSON.parse(localStorage.getItem("shipping")) :
+        {
+            address: "",
+            city: "",
+            postalCode: "",
+            country: "",
+        };
+    return shipping;
+};
+export const setShipping = ({
+    address = "",
+    city = "",
+    postalCode = "",
+    country = "",
+}) => {
+    localStorage.setItem(
+        "shipping",
+        JSON.stringify({ address, city, postalCode, country })
+    );
+};
