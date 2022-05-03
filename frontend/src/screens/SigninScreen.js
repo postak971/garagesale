@@ -1,6 +1,6 @@
 import { signin } from "../api";
 import { getUserInfo, setUserInfo } from "../localStorage";
-import { hideLoading, showLoading, showMessage } from "../util";
+import { hideLoading, redirectUser, showLoading, showMessage } from "../util";
 
 const SigninScreen = {
     after_render: () => {
@@ -22,13 +22,14 @@ const SigninScreen = {
                     setUserInfo(
                         data
                     ); /* save user information in the local storage after successful login */
-                    document.location.hash = "/";
+                    /* document.location.hash = "/"; */
+                    redirectUser();
                 }
             });
     },
     render: () => {
         if (getUserInfo().name) {
-            document.location.hash = "/";
+            redirectUser();
         }
         return ` 
             <div class = "form-container">

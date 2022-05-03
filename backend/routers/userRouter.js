@@ -77,8 +77,8 @@ userRouter.put(
         const user = await User.findById(req.params.id);
 
         if (!user) {
-            res.status(401).send({
-                message: "Invalid User Info",
+            res.status(404).send({
+                message: "User not found",
             });
         } else {
             user.name = req.body.name || user.name;
